@@ -64,7 +64,7 @@ function AddRecipe() {
       {/* <Upload {...props}>
 				<Button icon={<UploadOutlined />}>Select image</Button>
 			</Upload> */}
-      <Button htmlType="submit">Add Recipe</Button>
+      <Button htmlType="submit">Send</Button>
     </Form>
   );
 }

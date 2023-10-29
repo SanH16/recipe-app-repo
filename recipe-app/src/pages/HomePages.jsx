@@ -13,13 +13,6 @@ function HomePages() {
   return (
     <>
       <h2>Main Home Pages</h2>
-      <Link to="/login">
-        <Button>Login</Button>
-      </Link>
-      <Link to="/add-recipes">
-        <Button>Add Recipe</Button>
-      </Link>
-
       {recipe &&
         recipe.map((val) => (
           <Row key={val.id}>
