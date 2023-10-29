@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, Select, message } from "antd";
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../configs/firebase";
+import { APIrecipe } from "../apis/APIrecipe";
 
 const tags = [
   "Breakfast",
@@ -32,12 +33,12 @@ function AddRecipe() {
 
   const onFinish = async (recipe) => {
     try {
-      const docRef = await addDoc(collection(db, "recipe"), {
-        recipe: recipe,
-      });
-      console.log("Document is written in ID : ", docRef.id);
+      APIrecipe.addRecipe(recipe);
+      message.success("add recipe added successful");
+      form.resetFields();
     } catch (error) {
-      console.log("Error adding document", e);
+      console.error(error);
+      message.error("something went wrong");
     }
   };
   return (

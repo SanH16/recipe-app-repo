@@ -1,29 +1,53 @@
-import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { db } from "../configs/firebase";
+import { Button, Col, Row, Tag } from "antd";
+import { APIrecipe } from "../apis/APIrecipe";
 
-export default function HomePages() {
+function HomePages() {
   const [recipe, setRecipe] = useState([]);
 
   useEffect(() => {
-    const fetchPost = async () => {
-      await getDocs(collection(db, "recipe")).then((querySnapshot) => {
-        const newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data,
-          id: doc.id,
-        }));
-        setRecipe(newData);
-        console.log(newData);
-      });
-    };
-    fetchPost();
+    APIrecipe.getRecipes().then(setRecipe);
+    console.log(recipe);
   }, []);
   return (
     <>
       <h2>Main Home Pages</h2>
-      <Link to="/login">Login</Link>
-      <Link to="/add-recipes">Add Recipe</Link>
+      <Link to="/login">
+        <Button>Login</Button>
+      </Link>
+      <Link to="/add-recipes">
+        <Button>Add Recipe</Button>
+      </Link>
+
+      {recipe &&
+        recipe.map((val) => (
+          <Row key={val.id}>
+            <Col>
+              <h2>{val.title}</h2>
+              {val.tags.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+              <p>
+                <b>Description: </b>
+                {val.description}
+              </p>
+              <p>
+                <b>Instructions: </b>
+                {val.instructions}
+              </p>
+              {/* <button
+								onClick={() =>
+									APIRecipe.deleteRecipe(val.id).then(() => navigate(0))
+								}
+							>
+								del
+							</button> */}
+            </Col>
+          </Row>
+        ))}
     </>
   );
 }
+
+export default HomePages;
