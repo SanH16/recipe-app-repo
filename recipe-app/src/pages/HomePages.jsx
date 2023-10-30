@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Tag } from "antd";
 import { APIrecipe } from "../apis/APIrecipe";
+import { APIpost } from "../apis/APIpost";
 
 function HomePages() {
   const [recipe, setRecipe] = useState([]);
 
   useEffect(() => {
     APIrecipe.getRecipes().then(setRecipe);
-    console.log(recipe);
+    APIpost.getPosts({ limit: 5, page: 0 });
   }, []);
   return (
     <>

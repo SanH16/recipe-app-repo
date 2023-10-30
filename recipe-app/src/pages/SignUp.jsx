@@ -1,6 +1,8 @@
+import { Button, Input } from "antd";
 import { auth } from "../configs/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -15,9 +17,11 @@ export const SignUp = () => {
   };
   return (
     <div>
-      <input placeholder="Email.." onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password.." onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={createAccount}>SignUp</button>
+      <Input placeholder="Email.." onChange={(e) => setEmail(e.target.value)} />
+      <Input type="password" placeholder="Password.." onChange={(e) => setPassword(e.target.value)} />
+      <Link to="/login">
+        <Button onClick={createAccount}>SignUp</Button>
+      </Link>
     </div>
   );
 };

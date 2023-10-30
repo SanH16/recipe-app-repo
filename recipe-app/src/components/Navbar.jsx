@@ -1,24 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { authServices } from "../configs/auth";
-import { Button } from "antd";
+import { Button, Image, Row } from "antd";
+import { auth } from "../configs/firebase";
 
 function Navbar() {
   return (
     <>
-      <nav>
-        {/* <Link to=""> */}
-        <button onClick={() => authServices.logOut()}>Logout</button>
-        {/* </Link> */}
-        {!authServices.isAuthorized() && (
-          <Link to="/login">
-            <Button>Login</Button>
+      <Row justify="space-between">
+        <div>
+          {auth.currentUser && (
+            <>
+              <Image width={30} src={auth.currentUser.photoURL} />
+              <span>{auth.currentUser.displayName}</span>
+            </>
+          )}
+          <Button type="link" onClick={() => authServices.logOut()}>
+            Logout
+          </Button>
+
+          {!authServices.isAuthorized() && (
+            <Link to="/login">
+              <Button>Login</Button>
+            </Link>
+          )}
+          <Link to="/">
+            <Button>Home</Button>
           </Link>
-        )}
-        <Link to="/add-recipes">
-          <Button>Add Recipe</Button>
-        </Link>
-      </nav>
+          <Link to="/add-recipes">
+            <Button>Add Recipe</Button>
+          </Link>
+        </div>
+      </Row>
       <hr />
     </>
   );

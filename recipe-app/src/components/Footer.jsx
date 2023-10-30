@@ -6,9 +6,7 @@ function Footer() {
   return (
     <div>
       <hr />
-      <Link to="/">
-        <Button>Home</Button>
-      </Link>
+
       <h5>Saya footer</h5>
     </div>
   );

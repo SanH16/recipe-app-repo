@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@reduxjs/toolkit": "^1.9.7",
     "antd": "^5.10.2",
+    "axios": "^1.6.0",
     "firebase": "^10.5.2",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",

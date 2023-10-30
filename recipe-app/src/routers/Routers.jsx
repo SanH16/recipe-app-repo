@@ -8,6 +8,7 @@ import ProtectedRouter from "./ProtectedRouter";
 import NotFound from "../components/NotFound";
 import UnauthorizedPages from "../pages/UnauthorizedPages";
 import AddRecipe from "../components/AddRecipe";
+import LogoutSession from "../pages/LogoutSession";
 
 function Routers() {
   return (
@@ -20,6 +21,7 @@ function Routers() {
         <Route path="/" element={<ProtectedRouter />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/logoutsession" element={<LogoutSession />} />
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route path="/unauthorized" element={<UnauthorizedPages />} />
